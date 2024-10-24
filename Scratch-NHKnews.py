@@ -12,8 +12,3 @@ xml_6=r_6.text
 
 date = datetime.datetime.now()
 print(date.year + date.month + date.day)
-print(date.month)
-print(date.day) 
-
-
-
