@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import datetime
 import pytz
+import scratchattach as sa
 
 url = "http://www3.nhk.or.jp/rss/news/cat4.xml"
 
