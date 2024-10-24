@@ -24,3 +24,6 @@ for item in soup.find_all('item'):
             print(f"タイトル: {title}")
             print(f"リンク: {link}")
             print(f"公開日時: {pubDate}")
+            print("-" * 20)
+    except ValueError:
+        print(f"日付の解析に失敗しました: {pubDate_str}")
