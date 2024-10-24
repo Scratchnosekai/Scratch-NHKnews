@@ -16,5 +16,5 @@ xml_6=r_6.text
 
 month=dt.month
 day=dt.day
-print(dt.year + dt.month + dt.day)
+print(dt.year)
 
