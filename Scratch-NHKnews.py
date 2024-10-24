@@ -12,6 +12,9 @@ r_4 = requests.get(url_4)
 r_6 = requests.get(url_6)
 xml_4=r_4.text
 xml_6=r_6.text
-print(dt.year)
 
+year=dt.year
+month=dt.month
+day=dt.hour
+print(year + month + day)
 
