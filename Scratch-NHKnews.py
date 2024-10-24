@@ -10,7 +10,7 @@ r_6 = requests.get(url_6)
 xml_4=r_4.text
 xml_6=r_6.text
 
-date = datetime.datetime.now(pytz.timezone())
+date = datetime.datetime.now()
 num1 = date.year
 num2 = date.month
 num3 = date.day
