@@ -2,3 +2,4 @@ Scratchattach>=2.0.5
 requests
 BeautifulSoup4
 lxml
+pytz
