@@ -15,4 +15,4 @@ num1 = date.year
 num2 = date.month
 num3 = date.day
 result = str(num1) + str(num2) + str(num3)
-print(result)  # 出力: 123456
+print(result)  
