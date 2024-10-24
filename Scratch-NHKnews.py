@@ -15,6 +15,6 @@ xml_6=r_6.text
 
 year=dt.year
 month=dt.month
-day=dt.hour
+day=dt.day
 print(year + month + day)
 
