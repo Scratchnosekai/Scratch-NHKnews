@@ -12,12 +12,13 @@ url = "http://www3.nhk.or.jp/rss/news/cat4.xml"
 
 soup = fetch_and_parse_rss(url)
 
-three_days_ago = datetime.datetime.now() - datetime.timedelta(days=3)
+timezone = pytz.timezone('Asia/Tokyo')
 
+# 3日前の日時を取得し、タイムゾーン情報を追加
+three_days_ago = datetime.datetime.now(timezone) - datetime.timedelta(days=3)
+
+# ニュースアイテムをループで処理
 for item in soup.find_all('item'):
-    pubDate_str = item.find('pubDate').text.strip()
-    try:
-        pubDate = datetime.datetime.strptime(pubDate_str, '%a, %d %b %Y %H:%M:%S %z')
         if pubDate >= three_days_ago:
             title = item.find('title').text.strip()
             link = item.find('link').text.strip()
