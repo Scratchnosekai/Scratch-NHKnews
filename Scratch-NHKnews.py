@@ -15,5 +15,6 @@ month=datetime.month
 day=datetime.day
 
 xml_6 = find_all((year)(month)(day))	
+print(xml_6)
 
 
