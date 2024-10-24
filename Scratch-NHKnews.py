@@ -11,4 +11,4 @@ xml_4=r_4.text
 xml_6=r_6.text
 
 date = datetime.datetime.now()
-print(date.year + date.month + date.day)
+print(date.year +" "+ date.month +" "+ date.day)
