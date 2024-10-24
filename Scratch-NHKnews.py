@@ -24,4 +24,3 @@ for item in soup.find_all('item'):
             print(f"タイトル: {title}")
             print(f"リンク: {link}")
             print(f"公開日時: {pubDate}")
-            print("End")
