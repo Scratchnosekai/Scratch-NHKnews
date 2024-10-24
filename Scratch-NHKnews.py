@@ -3,13 +3,14 @@ from bs4 import BeautifulSoup
 import datetime
 import pytz
 
+url = "http://www3.nhk.or.jp/rss/news/cat4.xml"
+
 def fetch_and_parse_rss(url):
     response = requests.get(url)
     response.raise_for_status()
     soup = BeautifulSoup(response.content, 'xml')
     return soup
 
-url = "http://www3.nhk.or.jp/rss/news/cat4.xml"
 
 timezone = pytz.timezone('Asia/Tokyo')
 
