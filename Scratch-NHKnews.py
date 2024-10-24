@@ -12,7 +12,7 @@ r_4 = requests.get(url_4)
 r_6 = requests.get(url_6)
 xml_4=r_4.text
 xml_6=r_6.text
-r_4.find_all(dt.year)
+r_4.find_allstr(dt.year)
 
 
 
