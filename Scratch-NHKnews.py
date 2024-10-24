@@ -16,7 +16,7 @@ num2 = date.month
 num3 = date.day
 result = str(num1) + str(num2) + str(num3)
 with open("r_4.text") as fp:
-    l = BeautifulSoup(r_4,'xml')
+    l = BeautifulSoup(r_4,.text'xml')
 print(l)
   
 
