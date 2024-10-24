@@ -15,4 +15,4 @@ num1 = date.year
 num2 = date.month
 num3 = date.day
 result = str(num1) + str(num2) + str(num3)
-print(result)  
+xml_4.find_all(result)	
