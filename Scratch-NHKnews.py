@@ -1,7 +1,7 @@
 import requests
 import scratchattach as sa
 from bs4 import BeautifulSoup
-import time
+import datetime
 
 tokyo_tz = datetime.timezone(datetime.timedelta(hours=9))
 dt = datetime.datetime.now(tokyo_tz)
