@@ -17,7 +17,7 @@ num3 = date.day
 result = str(num1) + str(num2) + str(num3)
 
 l = BeautifulSoup(r_4.text,'xml')
-q=soup.find_all("guid")
+q=Soup.find_all("guid")
 print(q)
   
 
