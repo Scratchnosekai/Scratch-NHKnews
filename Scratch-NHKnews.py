@@ -11,4 +11,4 @@ xml_4=r_4.text
 xml_6=r_6.text
 
 date = datetime.datetime.now()
-print(2024 + 10 + 24)
+print(2024 += 10 += 24)
