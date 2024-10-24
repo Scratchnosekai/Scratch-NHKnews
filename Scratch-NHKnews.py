@@ -17,6 +17,14 @@ num3 = date.day
 result = str(num1) + str(num2) + str(num3)
 
 l = BeautifulSoup(r_4.text,'xml')
-  
+for item in l.find_all('item'):
+        guid = item.find('guid').text.strip()
+        if guid.isdigit() and int(guid) > result:  
+            title = item.find('title').text.strip()
+            link = item.find('link').text.strip()
+            pubDate = item.find('pubDate').text.strip()
+            print(f"タイトル: {title}")
+            print(f"リンク: {link}")
+            print(f"公開日時: {pubDate}")
 
 
