@@ -42,7 +42,6 @@ session = sa.login("Scratchnosekai", os.getenv("PASSWORD"))
 cloud = session.connect_cloud("876250500")
 encode= Encoding.encode("aiueo")
 print(encode)
-print(decode)
 urls = {
     "政治": "http://www3.nhk.or.jp/rss/news/cat4.xml",
     "国際": "http://www3.nhk.or.jp/rss/news/cat6.xml",
