@@ -42,6 +42,8 @@ session = sa.login("Scratchnosekai", os.getenv("PASSWORD"))
 cloud = session.connect_cloud("876250500")
 encode = Encoding.encode("石破首相 自衛官の処遇改善へ “必要経費を来年度予算案に”")
 print(encode)
+decode = Encoding.decode("2020202020202020202020202020202020202020202020202020202020")
+print(decode)
 urls = {
     "政治": "http://www3.nhk.or.jp/rss/news/cat4.xml",
     "国際": "http://www3.nhk.or.jp/rss/news/cat6.xml",
