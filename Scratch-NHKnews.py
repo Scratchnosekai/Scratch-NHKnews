@@ -40,8 +40,6 @@ def fetch_and_parse_rss(url, category):
 
 session = sa.login("Scratchnosekai", os.getenv("PASSWORD"))
 cloud = session.connect_cloud("876250500")
-encode = Encoding.encode("石破首相 自衛官の処遇改善へ “必要経費を来年度予算案に”")
-print(encode)
 decode = Encoding.decode("2020202020202020202020202020202020202020202020202020202020")
 print(decode)
 urls = {
