@@ -5,7 +5,7 @@ import pytz
 import scratchattach as sa
 from scratchattach import Encoding
 
-session = sa.login("Scratchnosekai",PASSWORD) 
+session = sa.login("Scratchnosekai",os.getenv("PASSWORD")) 
 cloud = session.connect_cloud("876250500") 
 url = "http://www3.nhk.or.jp/rss/news/cat4.xml"
 url2 = "http://www3.nhk.or.jp/rss/news/cat6.xml"
