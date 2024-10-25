@@ -11,7 +11,7 @@ def fetch_and_parse_rss(url, category):
 
     Args:
         url: The URL of the RSS feed.
-        category: The category of news (e.g., "政治", "国際").
+        category: The category of news (e.g., "政治", "国際", "社会").
 
     Returns:
         A list of news items.
