@@ -3,7 +3,10 @@ from bs4 import BeautifulSoup
 import datetime
 import pytz
 import scratchattach as sa
+from scratchattach import Encoding
 
+session = sa.login("Scratchnosekai",PASSWORD) 
+cloud = session.connect_cloud("876250500") 
 url = "http://www3.nhk.or.jp/rss/news/cat4.xml"
 
 
@@ -40,3 +43,4 @@ for item in soup.find_all('item'):
             print("-" * 20)
     except ValueError:
         print(f"日付の解析に失敗しました: {pubDate_str}")
+
