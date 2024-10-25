@@ -8,7 +8,7 @@ from scratchattach import Encoding
 session = sa.login("Scratchnosekai",PASSWORD) 
 cloud = session.connect_cloud("876250500") 
 url = "http://www3.nhk.or.jp/rss/news/cat4.xml"
-
+url2 = "http://www3.nhk.or.jp/rss/news/cat6.xml"
 
 def fetch_and_parse_rss(url):
     """Fetches and parses the RSS feed from the given URL.
@@ -21,8 +21,11 @@ def fetch_and_parse_rss(url):
     """
 
     response = requests.get(url)
-    response.raise_for_status()  # Raise an exception if the request fails
-    soup = BeautifulSoup(response.content, 'xml')  # Parse the content as XML
+    response2 = requests.get(url2)
+    response.raise_for_status()  
+    response.raise_for_status()
+    soup = BeautifulSoup(response.content, 'xml')  
+    soup = BeautifulSoup(response2.content, 'xml')  
     return soup
 
 soup = fetch_and_parse_rss(url)
