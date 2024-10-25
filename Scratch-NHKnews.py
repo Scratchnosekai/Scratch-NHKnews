@@ -43,7 +43,8 @@ cloud = session.connect_cloud("876250500")
 
 urls = {
     "政治": "http://www3.nhk.or.jp/rss/news/cat4.xml",
-    "国際": "http://www3.nhk.or.jp/rss/news/cat6.xml"
+    "国際": "http://www3.nhk.or.jp/rss/news/cat6.xml",
+    "社会": "http://www3.nhk.or.jp/rss/news/cat1.xml"
 }
 
 for category, url in urls.items():
