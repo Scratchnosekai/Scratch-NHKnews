@@ -26,8 +26,9 @@ def fetch_and_parse_rss(url):
     response.raise_for_status()  
     response.raise_for_status()
     soup = BeautifulSoup(response.content, 'xml')  
-    soup = BeautifulSoup(response2.content, 'xml')  
+    soup2 = BeautifulSoup(response2.content, 'xml')  
     return soup
+    return soup2
 
 soup = fetch_and_parse_rss(url)
 
@@ -41,6 +42,23 @@ for item in soup.find_all('item'):
         if pubDate >= three_days_ago:
             title = item.find('title').text.strip()
             link = item.find('link').text.strip()
+            print("政治")
+            print(f"タイトル: {title}")
+            print(f"リンク: {link}")
+            print(f"公開日時: {pubDate}")
+            print("-" * 20)
+    except ValueError:
+        print(f"日付の解析に失敗しました: {pubDate_str}")
+
+
+for item in soup2.find_all('item'):
+    pubDate_str = item.find('pubDate').text.strip()
+    try:
+        pubDate = datetime.datetime.strptime(pubDate_str, '%a, %d %b %Y %H:%M:%S %z')
+        if pubDate >= three_days_ago:
+            title = item.find('title').text.strip()
+            link = item.find('link').text.strip()
+            print("国際")
             print(f"タイトル: {title}")
             print(f"リンク: {link}")
             print(f"公開日時: {pubDate}")
