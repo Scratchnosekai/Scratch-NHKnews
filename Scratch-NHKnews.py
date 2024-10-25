@@ -6,63 +6,53 @@ import scratchattach as sa
 from scratchattach import Encoding
 import os
 
-session = sa.login("Scratchnosekai",os.getenv("PASSWORD")) 
-cloud = session.connect_cloud("876250500") 
-url = "http://www3.nhk.or.jp/rss/news/cat4.xml"
-url2 = "http://www3.nhk.or.jp/rss/news/cat6.xml"
-
-def fetch_and_parse_rss(url):
-    """Fetches and parses the RSS feed from the given URL.
+def fetch_and_parse_rss(url, category):
+    """Fetches and parses the RSS feed from the given URL and category.
 
     Args:
         url: The URL of the RSS feed.
+        category: The category of news (e.g., "政治", "国際").
 
     Returns:
-        A BeautifulSoup object representing the parsed RSS feed.
+        A list of news items.
     """
 
     response = requests.get(url)
-    response2 = requests.get(url2)
-    response.raise_for_status()  
     response.raise_for_status()
-    soup = BeautifulSoup(response.content, 'xml')  
-    soup2 = BeautifulSoup(response2.content, 'xml')  
-    return soup
-    return soup2
+    soup = BeautifulSoup(response.content, 'xml')
 
-soup = fetch_and_parse_rss(url)
+    news_items = []
+    for item in soup.find_all('item'):
+        pubDate_str = item.find('pubDate').text.strip()
+        try:
+            pubDate = datetime.datetime.strptime(pubDate_str, '%a, %d %b %Y %H:%M:%S %z')
+            if pubDate >= datetime.datetime.now(pytz.timezone('Asia/Tokyo')) - datetime.timedelta(days=3):
+                news_items.append({
+                    'category': category,
+                    'title': item.find('title').text.strip(),
+                    'link': item.find('link').text.strip(),
+                    'pubDate': pubDate
+                })
+        except ValueError:
+            print(f"日付の解析に失敗しました: {pubDate_str}")
 
-timezone = pytz.timezone('Asia/Tokyo')
-three_days_ago = datetime.datetime.now(timezone) - datetime.timedelta(days=3)
+    return news_items
 
-for item in soup.find_all('item'):
-    pubDate_str = item.find('pubDate').text.strip()
-    try:
-        pubDate = datetime.datetime.strptime(pubDate_str, '%a, %d %b %Y %H:%M:%S %z')
-        if pubDate >= three_days_ago:
-            title = item.find('title').text.strip()
-            link = item.find('link').text.strip()
-            print("政治")
-            print(f"タイトル: {title}")
-            print(f"リンク: {link}")
-            print(f"公開日時: {pubDate}")
-            print("-" * 20)
-    except ValueError:
-        print(f"日付の解析に失敗しました: {pubDate_str}")
+session = sa.login("Scratchnosekai", os.getenv("PASSWORD"))
+cloud = session.connect_cloud("876250500")
 
+urls = {
+    "政治": "http://www3.nhk.or.jp/rss/news/cat4.xml",
+    "国際": "http://www3.nhk.or.jp/rss/news/cat6.xml"
+}
 
-for item in soup2.find_all('item'):
-    pubDate_str = item.find('pubDate').text.strip()
-    try:
-        pubDate = datetime.datetime.strptime(pubDate_str, '%a, %d %b %Y %H:%M:%S %z')
-        if pubDate >= three_days_ago:
-            title = item.find('title').text.strip()
-            link = item.find('link').text.strip()
-            print("国際")
-            print(f"タイトル: {title}")
-            print(f"リンク: {link}")
-            print(f"公開日時: {pubDate}")
-            print("-" * 20)
-    except ValueError:
-        print(f"日付の解析に失敗しました: {pubDate_str}")
+for category, url in urls.items():
+    news_items = fetch_and_parse_rss(url, category)
+
+    for item in news_items:
+        print(f"{item['category']}")
+        print(f"タイトル: {item['title']}")
+        print(f"リンク: {item['link']}")
+        print(f"公開日時: {item['pubDate']}")
+        print("-" * 20)
 
