@@ -4,6 +4,7 @@ import datetime
 import pytz
 import scratchattach as sa
 from scratchattach import Encoding
+import os
 
 session = sa.login("Scratchnosekai",os.getenv("PASSWORD")) 
 cloud = session.connect_cloud("876250500") 
