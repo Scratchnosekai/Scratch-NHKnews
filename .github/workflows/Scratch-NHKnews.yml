@@ -2,7 +2,7 @@ name: Action Sample
 
 on:
   push:
-    branches: 
+    branches:
       - master
   workflow_dispatch:
 
@@ -22,3 +22,5 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run Python
         run: python Scratch-NHKnews.py
+        env:
+          PASSWORD: ${{ secrets.PASSWORD }}
