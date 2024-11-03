@@ -46,7 +46,7 @@ urls = {
     "国際": "http://www3.nhk.or.jp/rss/news/cat6.xml",
     "社会": "http://www3.nhk.or.jp/rss/news/cat1.xml",
     "スポーツ": "http://www3.nhk.or.jp/rss/news/cat7.xml",
-    "文化・エンタメ" "http://www3.nhk.or.jp/rss/news/cat2.xml" ,
+    "文化・エンタメ" "http://www3.nhk.or.jp/rss/news/cat2.xml",
     "科学・医療": "http://www3.nhk.or.jp/rss/news/cat3.xml"
 }
 
