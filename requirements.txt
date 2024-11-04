@@ -3,3 +3,4 @@ requests
 BeautifulSoup4
 lxml
 pytz
+Flask==2.0.1
