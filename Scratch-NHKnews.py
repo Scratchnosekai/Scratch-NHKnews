@@ -1,10 +1,11 @@
+from flask import Flask, jsonify
 import requests
 from bs4 import BeautifulSoup
 import datetime
 import pytz
-import scratchattach as sa
-from scratchattach import Encoding
 import os
+
+app = Flask(__name__)
 
 def fetch_and_parse_rss(url, category):
     """Fetches and parses the RSS feed from the given URL and category.
@@ -16,7 +17,6 @@ def fetch_and_parse_rss(url, category):
     Returns:
         A list of news items.
     """
-
     response = requests.get(url)
     response.raise_for_status()
     soup = BeautifulSoup(response.content, 'xml')
@@ -38,25 +38,30 @@ def fetch_and_parse_rss(url, category):
 
     return news_items
 
-session = sa.login("Scratchnosekai", os.getenv("PASSWORD"))
-cloud = session.connect_cloud("876250500")
+@app.route('/news', methods=['GET'])
+def get_news():
+    urls = {
+        "政治": "http://www3.nhk.or.jp/rss/news/cat4.xml",
+        "国際": "http://www3.nhk.or.jp/rss/news/cat6.xml",
+        "社会": "http://www3.nhk.or.jp/rss/news/cat1.xml",
+        "スポーツ": "http://www3.nhk.or.jp/rss/news/cat7.xml",
+        "文化・エンタメ": "http://www3.nhk.or.jp/rss/news/cat2.xml",
+        "科学・医療": "http://www3.nhk.or.jp/rss/news/cat3.xml"
+    }
 
-urls = {
-    "政治": "http://www3.nhk.or.jp/rss/news/cat4.xml",
-    "国際": "http://www3.nhk.or.jp/rss/news/cat6.xml",
-    "社会": "http://www3.nhk.or.jp/rss/news/cat1.xml",
-    "スポーツ": "http://www3.nhk.or.jp/rss/news/cat7.xml",
-    "文化・エンタメ": "http://www3.nhk.or.jp/rss/news/cat2.xml",
-    "科学・医療": "http://www3.nhk.or.jp/rss/news/cat3.xml"
-}
+    all_news = []
+    for category, url in urls.items():
+        news_items = fetch_and_parse_rss(url, category)
+        all_news.extend(news_items)
 
-for category, url in urls.items():
-    news_items = fetch_and_parse_rss(url, category)
-
-    for item in news_items:
+    for item in all_news:
         print(f"{item['category']}")
         print(f"タイトル: {item['title']}")
         print(f"リンク: {item['link']}")
         print(f"公開日時: {item['pubDate']}")
         print("-" * 20)
 
+    return jsonify(all_news)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
