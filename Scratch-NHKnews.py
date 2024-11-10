@@ -11,7 +11,6 @@ def fetch_and_parse_rss(url, category):
     soup = BeautifulSoup(response.content, 'xml')
     news_items = []
     
-    # RSSフィードの項目をループ
     for item in soup.find_all('item'):
         pubDate_str = item.find('pubDate').text.strip()
         try:
@@ -25,29 +24,27 @@ def fetch_and_parse_rss(url, category):
                 })
         except ValueError:
             print(f"日付の解析に失敗しました: {pubDate_str}")
-            continue  # 日付解析に失敗した場合は次のアイテムに進む
+            continue  
     
-    return news_items  # 必ずnews_itemsを返す
+    return news_items  
 
-# ログインしてクラウド接続
 session = sa.login("Scratchnosekai", os.getenv("PASSWORD"))
 cloud = session.connect_cloud("876250500")
 
-# URL 辞書の修正: カンマを追加
 urls = {
     "政治": "http://www3.nhk.or.jp/rss/news/cat4.xml",
     "国際": "http://www3.nhk.or.jp/rss/news/cat6.xml",
     "社会": "http://www3.nhk.or.jp/rss/news/cat1.xml",
     "スポーツ": "http://www3.nhk.or.jp/rss/news/cat7.xml",
-    "文化・エンタメ": "http://www3.nhk.or.jp/rss/news/cat2.xml",  # カンマ追加
+    "文化・エンタメ": "http://www3.nhk.or.jp/rss/news/cat2.xml",  
     "科学・医療": "http://www3.nhk.or.jp/rss/news/cat3.xml"
 }
 
-# 各カテゴリに対するニュースを処理
+
 for category, url in urls.items():
     news_items = fetch_and_parse_rss(url, category)
     
-    if news_items:  # news_itemsが空でない場合に処理
+    if news_items:  
         for item in news_items:
             print(f"{item['category']}")
             print(f"タイトル: {item['title']}")
