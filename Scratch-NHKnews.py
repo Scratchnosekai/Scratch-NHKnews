@@ -42,15 +42,10 @@ for category, url in urls.items():
     
     if news_items:  
         for item in news_items:
-            text = "こんにちは、Scratchnosekai!！"
-            unique_unicode = set()  
-
-for text2 in text:
-    unique_unicode.add(ord(text2))
-
+            text = "こんにちはScratchnosekai!!"
 result = ""
-for unicode_num in unique_unicode:
-    result += str(unicode_num)
-    print(result)
+for char in text:
+    result += str(ord(char))
+print(result)  
 else:
-    print(f"{category}カテゴリには最新のニュースがありません。")
+print(f"{category}カテゴリには最新のニュースがありません。")
