@@ -1,4 +1,4 @@
-Scratchattach>=2.0.5
+Scratchattach>=2.1.6
 requests
 BeautifulSoup4
 lxml
