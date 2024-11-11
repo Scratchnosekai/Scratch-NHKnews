@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 import datetime
 import pytz
-import scratchattach as sa
 import os
 
 def fetch_and_parse_rss(url, category):
@@ -27,9 +26,6 @@ def fetch_and_parse_rss(url, category):
             continue  
     
     return news_items  
-
-session = sa.login("Scratchnosekai", os.getenv("PASSWORD"))
-cloud = session.connect_cloud("876250500")
 
 urls = {
     "政治": "http://www3.nhk.or.jp/rss/news/cat4.xml",
