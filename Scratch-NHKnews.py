@@ -43,9 +43,9 @@ for category, url in urls.items():
     if news_items:  
         for item in news_items:
             text = "こんにちはScratchnosekai!!"
-result = ""
+            result = ""
 for char in text:
     result += str(ord(char))
-print(result)  
+    print(result)  
 else:
 print(f"{category}カテゴリには最新のニュースがありません。")
