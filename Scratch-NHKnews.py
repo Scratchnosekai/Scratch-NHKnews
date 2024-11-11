@@ -48,4 +48,4 @@ for char in text:
     result += str(ord(char))
     print(result)  
 else:
-print(f"{category}カテゴリには最新のニュースがありません。")
+    print(f"{category}カテゴリには最新のニュースがありません。")
