@@ -46,10 +46,9 @@ for category, url in urls.items():
     
     if news_items:  
         for item in news_items:
-            print(f"{item['category']}")
-            print(f"タイトル: {item['title']}")
-            print(f"リンク: {item['link']}")
-            print(f"公開日時: {item['pubDate']}")
-            print("-" * 20)
+            text = "こんにちは、世界！"
+            for text2 in text:
+                unicode = ord(text2)
+                print(unicode)
     else:
         print(f"{category}カテゴリには最新のニュースがありません。")
