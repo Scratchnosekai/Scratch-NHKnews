@@ -51,5 +51,5 @@ for text2 in text:
 
 for u in unique_unicode:
     print(u)
-    else:
-        print(f"{category}カテゴリには最新のニュースがありません。")
+else:
+    print(f"{category}カテゴリには最新のニュースがありません。")
