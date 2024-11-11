@@ -43,8 +43,13 @@ for category, url in urls.items():
     if news_items:  
         for item in news_items:
             text = "こんにちは、世界！"
-            for text2 in text:
-                unicode = ord(text2)
-                print(unicode)
+            unique_unicode = set()  # 重複を許さない集合を作る
+
+for text2 in text:
+    unicode = ord(text2)
+    unique_unicode.add(unicode)
+
+for u in unique_unicode:
+    print(u)
     else:
         print(f"{category}カテゴリには最新のニュースがありません。")
