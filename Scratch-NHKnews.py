@@ -48,11 +48,9 @@ for category, url in urls.items():
 for text2 in text:
     unique_unicode.add(ord(text2))
 
-# 数字を文字列に変換して連結
 result = ""
 for unicode_num in unique_unicode:
     result += str(unicode_num)
-
-print(result)
+    print(result)
 else:
     print(f"{category}カテゴリには最新のニュースがありません。")
