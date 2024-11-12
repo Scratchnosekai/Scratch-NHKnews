@@ -4,12 +4,6 @@ import datetime
 import pytz
 import os
 
-def get_unicode_numbers(text):
-    result = ""
-    for char in text:
-        result += str(ord(char))
-        return result
-
 def fetch_and_parse_rss(url, category):
     response = requests.get(url)
     response.raise_for_status()
@@ -54,9 +48,3 @@ for category, url in urls.items():
             
 else:
     print(f"{category}カテゴリには最新のニュースがありません。")
-
-def get_unicode_numbers(text):
-    result = ""
-    for char in text:
-        result += str(ord(char))
-    return result
