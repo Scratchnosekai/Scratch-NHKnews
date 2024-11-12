@@ -42,5 +42,6 @@ for category, url in urls.items():
     
     if news_items:  
         for item in news_items:
-else:
+
+    else:
     print(f"{category}カテゴリには最新のニュースがありません。")
