@@ -10,17 +10,17 @@ def fetch_and_parse_rss(url, category):
     soup = BeautifulSoup(response.content, 'xml')
     news_items = []
     
-    for item in soup.find_all('item'):
-        pubDate_str = item.find('pubDate').text.strip()
-        try:
-            pubDate = datetime.datetime.strptime(pubDate_str, '%a, %d %b %Y %H:%M:%S %z')
-            if pubDate >= datetime.datetime.now(pytz.timezone('Asia/Tokyo')) - datetime.timedelta(days=3):
-                news_items.append({
-                    'category': category,
-                    'title': item.find('title').text.strip(),
-                    'link': item.find('link').text.strip(),
-                    'pubDate': pubDate
-                })
+for item in soup.find_all('item'):
+    pubDate_str = item.find('pubDate').text.strip()
+    try:
+        pubDate = datetime.datetime.strptime(pubDate_str, '%a, %d %b %Y %H:%M:%S %z')
+        if pubDate >= datetime.datetime.now(pytz.timezone('Asia/Tokyo')) - datetime.timedelta(days=3):
+            news_items.append({
+                'category': category,
+                'title': item.find('title').text.strip(),
+                'link': item.find('link').text.strip(),
+                'pubDate': pubDate
+            })
         except ValueError:
             print(f"日付の解析に失敗しました: {pubDate_str}")
             continue  
