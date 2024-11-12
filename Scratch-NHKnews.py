@@ -5,10 +5,10 @@ import pytz
 import os
 
 def fetch_and_parse_rss(url, category):
-    response = requests.get(url)
-    response.raise_for_status()
-    soup = BeautifulSoup(response.content, 'xml')
-    news_items = []
+    response = requests.get(url)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.content, 'xml')
+    news_items = []
     
     for item in soup.find_all('item'):
         pubDate_str = item.find('pubDate').text.strip()
