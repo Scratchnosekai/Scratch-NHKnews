@@ -43,7 +43,7 @@ for category, url in urls.items():
             unicode_numbers = ""
             for char in text:
                 unicode_numbers += str(ord(char))
-            print(f"【{category}カテゴリ】")
+            print(f"【{category}】")
             print(f"タイトル: {news['title']}")
             print(f"リンク: {news['link']}")
             print(f"Unicode数値: {unicode_numbers}")
