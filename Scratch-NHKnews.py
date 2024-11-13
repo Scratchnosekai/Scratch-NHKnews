@@ -12,18 +12,28 @@ def fetch_and_parse_rss(url, category):
     for item in soup.find_all('item'):
         pubDate_str = item.find('pubDate').text.strip()
         try:
+            # 公開日時を正しい形式で解析
             pubDate = datetime.datetime.strptime(pubDate_str, '%a, %d %b %Y %H:%M:%S %z')
+            # 3日以内のニュースのみを取得
             if pubDate >= datetime.datetime.now(pytz.timezone('Asia/Tokyo')) - datetime.timedelta(days=3):
                 news_items.append({
                     'category': category,
                     'title': item.find('title').text.strip(),
                     'link': item.find('link').text.strip(),
-                    'pubDate': pubDate
+                    'pubDate': pubDate  # 公開日時をdatetimeオブジェクトとして格納
                 })
         except ValueError:
             continue
 
     return news_items
+
+def convert_to_unicode_string(text):
+    """ 文字列をUnicodeのコードポイントに変換して4桁形式で返す """
+    unicode_numbers = ""
+    for char in text:
+        unicode_point = ord(char)  # 文字をUnicodeコードポイントに変換
+        unicode_numbers += f"{unicode_point:04d}"  # 4桁で表現
+    return unicode_numbers
 
 urls = {
     "政治": "http://www3.nhk.or.jp/rss/news/cat4.xml",
@@ -40,12 +50,12 @@ for category, url in urls.items():
     if news_list:
         for news in news_list:
             text = news['title']
-            unicode_numbers = ""
-            for char in text:
-                unicode_numbers += str(ord(char))
+            unicode_numbers = convert_to_unicode_string(text)  # Unicodeコードポイントを4桁形式に変換
+            pubDate = news['pubDate'].strftime('%Y-%m-%d %H:%M:%S')  # 公開日時を整形
             print(f"【{category}】")
             print(f"タイトル: {news['title']}")
             print(f"リンク: {news['link']}")
+            print(f"公開日時: {pubDate}")
             print(f"Unicode数値: {unicode_numbers}")
     else:
         print(f"{category}カテゴリには新しいニュースがありません。")
