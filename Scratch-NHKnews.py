@@ -26,12 +26,11 @@ def fetch_and_parse_rss(url, category):
     return news_items
 
 def convert_to_unicode_string(text):
-    """ 文字列をUnicodeのコードポイントに変換して4桁形式で返す """
-    unicode_numbers = ""
+    unicode_numbers = []
     for char in text:
         unicode_point = ord(char)  
-        unicode_numbers += f"{unicode_point:04d}"  
-    return unicode_numbers
+        unicode_numbers.append(f"{unicode_point:04d}")  #
+    return ', '.join(unicode_numbers)  
 
 urls = {
     "政治": "http://www3.nhk.or.jp/rss/news/cat4.xml",
