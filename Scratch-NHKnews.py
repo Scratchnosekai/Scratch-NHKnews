@@ -29,8 +29,8 @@ def convert_to_unicode_string(text):
     unicode_numbers = []
     for char in text:
         unicode_point = ord(char)  
-        unicode_numbers.append(f"{unicode_point:05d}")  #
-    return ', '.join(unicode_numbers)  
+        unicode_numbers.append(f"{unicode_point:05d}")  
+    return ''.join(unicode_numbers)  
 
 urls = {
     "政治": "http://www3.nhk.or.jp/rss/news/cat4.xml",
@@ -47,7 +47,7 @@ for category, url in urls.items():
     if news_list:
         for news in news_list:
             text = news['title']
-            unicode_numbers = convert_to_unicode_string(text)  
+            unicode_numbers = convert_to_unicode_string(text) 
             pubDate = news['pubDate'].strftime('%Y-%m-%d %H:%M:%S')  
             print(f"【{category}】")
             print(f"タイトル: {news['title']}")
