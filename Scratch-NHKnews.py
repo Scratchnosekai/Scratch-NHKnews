@@ -58,17 +58,5 @@ for category, url in urls.items():
             print(f"Unicode数値: {unicode_numbers}")
             session = sa.login("Scratchnosekai_2",os.getenv("PASSWORD"))
             cloud = session.connect_cloud("876250500")
-            cloud.set_vars({
-                "From_Host_1" : "",
-                "From_Host_2" : "",
-                "From_Host_3" : "",
-                "From_Host_4" : "",
-                "From_Host_5" : "",
-                "From_Host_6" : "",
-                "From_Host_7" : "",
-                "From_Host_8" : "",
-                "From_Host_9" : "",
-                "To_Host_1" : ""
-            })
     else:
         print(f"{category}カテゴリには新しいニュースがありません。")
