@@ -5,6 +5,8 @@ import pytz
 import scratchattach as sa
 import os
 
+session = sa.login("Scratchnosekai_2",os.getenv("PASSWORD"))
+cloud = session.connect_cloud("876250500")
 def fetch_and_parse_rss(url, category):
     response = requests.get(url)
     response.raise_for_status()
@@ -56,7 +58,5 @@ for category, url in urls.items():
             print(f"リンク: {news['link']}")
             print(f"公開日時: {pubDate}")
             print(f"Unicode数値: {unicode_numbers}")
-            session = sa.login("Scratchnosekai_2",os.getenv("PASSWORD"))
-            cloud = session.connect_cloud("876250500")
     else:
         print(f"{category}カテゴリには新しいニュースがありません。")
