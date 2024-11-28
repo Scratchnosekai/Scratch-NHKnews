@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import datetime
 import pytz
 import scratchattach as sa
+import os
 
 def fetch_and_parse_rss(url, category):
     response = requests.get(url)
