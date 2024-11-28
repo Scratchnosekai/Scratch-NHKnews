@@ -5,11 +5,9 @@ import pytz
 import scratchattach as sa
 import os
 
-# Scratchにログイン
 session = sa.Session("Scratchnosekai_2", os.getenv("PASSWORD"))
 cloud = session.connect_cloud("876250500")
 
-# ニュースフィードを取得して解析する関数
 def fetch_and_parse_rss(url, category):
     response = requests.get(url)
     response.raise_for_status()
@@ -32,15 +30,13 @@ def fetch_and_parse_rss(url, category):
 
     return news_items
 
-# 文字列をUnicode数値に変換する関数
 def convert_to_unicode_string(text):
     unicode_numbers = []
     for char in text:
-        unicode_point = ord(char)  
-        unicode_numbers.append(f"{unicode_point:05d}")  
+        unicode_point = ord(char)
+        unicode_numbers.append(f"{unicode_point:05d}")
     return ''.join(unicode_numbers)
 
-# RSSフィードURLのリスト
 urls = {
     "政治": "http://www3.nhk.or.jp/rss/news/cat4.xml",
     "国際": "http://www3.nhk.or.jp/rss/news/cat6.xml",
@@ -50,8 +46,7 @@ urls = {
     "科学・医療": "http://www3.nhk.or.jp/rss/news/cat3.xml"
 }
 
-# ニュースを取得してクラウド変数に送信する
-cloud_vars = [f"From_Host{i}" for i in range(1, 10)]
+cloud_vars = {f"From_Host{i}": "" for i in range(1, 10)}
 news_count = 0
 
 for category, url in urls.items():
@@ -64,7 +59,7 @@ for category, url in urls.items():
                 unicode_numbers = convert_to_unicode_string(text)
                 pubDate = news['pubDate'].strftime('%Y-%m-%d %H:%M:%S')
                 
-                cloud.set_var(cloud_vars[news_count], unicode_numbers)
+                cloud_vars[f"From_Host{news_count + 1}"] = unicode_numbers
                 
                 print(f"【{category}】")
                 print(f"タイトル: {news['title']}")
@@ -77,3 +72,5 @@ for category, url in urls.items():
                 break
     else:
         print(f"{category}カテゴリには新しいニュースがありません。")
+
+cloud.set_vars(cloud_vars)
