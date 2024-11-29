@@ -5,7 +5,7 @@ import pytz
 import scratchattach as sa
 import os
 
-session = sa.Session("Scratchnosekai_2", os.getenv("PASSWORD"))
+session = sa.login("Scratchnosekai_2", os.getenv("PASSWORD"))
 cloud = session.connect_cloud("876250500")
 
 def fetch_and_parse_rss(url, category):
